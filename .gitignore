@@ -12,3 +12,5 @@
 *.tfvars
 
 *.log
+
+*.gz
