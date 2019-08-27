@@ -52,6 +52,7 @@ resource "vsphere_virtual_machine" "vm" {
 
     connection {
       type     = "ssh"
+      host     = self.default_ip_address
       user     = "${var.ubuntu_user}"
       password = "${var.ubuntu_password}"
     }
