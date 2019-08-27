@@ -16,9 +16,9 @@ resource "vsphere_virtual_machine" "vm" {
   resource_pool_id = "${var.resource_pool_id}"
   datastore_id     = "${var.datastore_id}"
 
-  num_cpus = 2
-  memory   = 1024
-  guest_id = "ubuntu64Guest"
+  num_cpus                    = 2
+  memory                      = 1024
+  guest_id                    = "ubuntu64Guest"
   wait_for_guest_net_routable = false
   wait_for_guest_net_timeout  = 0
 
@@ -50,4 +50,18 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   tags = ["${var.tags}"]
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt-get update",
+      "sudo apt-get install cowsay",
+      "cowsay Moo!",
+    ]
+
+    connection {
+      type     = "ssh"
+      user     = "${var.ubuntu_user}"
+      password = "${var.ubuntu_password}"
+    }
+  }
 }

@@ -18,8 +18,9 @@ data "vsphere_datastore" "datastore" {
 }
 
 data "vsphere_network" "network" {
-  name          = "${var.network_name}"
-#  name = "${module.network.vm_network_name}"
+  name = "${var.network_name}"
+
+  #  name = "${module.network.vm_network_name}"
   datacenter_id = "${data.vsphere_datacenter.dc.id}"
 }
 
@@ -29,15 +30,15 @@ data "vsphere_resource_pool" "pool" {
 }
 
 module "tags" {
-  source = "./modules/tags"
+  source  = "./modules/tags"
   project = "${var.project}"
 }
 
 module "vm" {
-  source = "./modules/vm"
-  project = "${var.project}"
-  network_id = "${data.vsphere_network.network.id}"
-  datastore_id = "${data.vsphere_datastore.datastore.id}"
-  resource_pool_id = "${data.vsphere_resource_pool.pool.id}" 
-  tags = ["${module.tags.environment_dev}","${module.tags.app_java}"]
+  source           = "./modules/vm"
+  project          = "${var.project}"
+  network_id       = "${data.vsphere_network.network.id}"
+  datastore_id     = "${data.vsphere_datastore.datastore.id}"
+  resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
+  tags             = ["${module.tags.environment_dev}", "${module.tags.app_java}"]
 }
