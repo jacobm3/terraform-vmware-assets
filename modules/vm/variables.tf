@@ -1,5 +1,5 @@
 variable "tags" {
-  type = list(string)
+  #type = list(string)
 }
 
 variable "network_id" {
