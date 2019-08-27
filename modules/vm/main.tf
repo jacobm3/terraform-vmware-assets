@@ -46,7 +46,7 @@ resource "vsphere_virtual_machine" "vm" {
   provisioner "remote-exec" {
     inline = [
       "echo ${var.ubuntu_password} | sudo -S sudo apt-get update",
-      "echo ${var.ubuntu_password} | sudo -S sudo apt-get install cowsay",
+      "echo ${var.ubuntu_password} | sudo -S sudo apt-get install -y cowsay",
       "cowsay Moo!",
     ]
 
