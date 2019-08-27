@@ -19,7 +19,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cpus                    = 2
   memory                      = 1024
   guest_id                    = "ubuntu64Guest"
-  wait_for_guest_net_routable = false
+  wait_for_guest_net_routable = true
   wait_for_guest_net_timeout  = 0
 
   network_interface {
@@ -33,13 +33,6 @@ resource "vsphere_virtual_machine" "vm" {
 
   clone {
     template_uuid = "${data.vsphere_virtual_machine.template.id}"
-
-    customize {
-      linux_options {
-        host_name = "terraform-test"
-        domain    = "test.internal"
-      }
-    }
   }
 
   tags = ["${var.tags}"]
