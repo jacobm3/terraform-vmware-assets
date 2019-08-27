@@ -20,3 +20,8 @@ variable "ubuntu_user" {
 variable "ubuntu_password" {
 }
 
+variable "num_cpus" {
+}
+
+variable "memory" {
+}

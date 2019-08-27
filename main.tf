@@ -45,5 +45,7 @@ module "vm" {
   tags             = [module.tags.environment_dev, module.tags.app_java]
   ubuntu_user      = var.ubuntu_user
   ubuntu_password  = var.ubuntu_password
+  num_cpus         = var.num_cpus
+  memory           = var.memory
 }
 

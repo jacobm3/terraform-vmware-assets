@@ -16,8 +16,8 @@ resource "vsphere_virtual_machine" "vm" {
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
 
-  num_cpus                    = 2
-  memory                      = 1024
+  num_cpus                    = var.num_cpus
+  memory                      = var.memory
   guest_id                    = "ubuntu64Guest"
   wait_for_guest_net_routable = false
   wait_for_guest_net_timeout  = 1
@@ -36,12 +36,6 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   #tags = var.tags
-
-  /*
-  provisioner "local-exec" {
-    command = "ping -c 10 ${vsphere_virtual_machine.vm.default_ip_address}"
-  }
-*/
 
   provisioner "remote-exec" {
     inline = [
