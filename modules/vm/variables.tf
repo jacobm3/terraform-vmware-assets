@@ -1,16 +1,9 @@
 variable "tags" {
-  type = list(string)
+  type = "list"
 }
 
-variable "network_id" {
-}
-
-variable "datastore_id" {
-}
-
-variable "resource_pool_id" {
-}
-
-variable "project" {
-}
+variable "network_id" {}
+variable "datastore_id" {}
+variable "resource_pool_id" {}
+variable "project" {}
 
