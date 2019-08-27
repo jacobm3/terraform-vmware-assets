@@ -14,5 +14,9 @@ variable "datastore_name" {
   default = "datastore1"
 }
 
-variable "ubuntu_user" {}
-variable "ubuntu_password" {}
+variable "ubuntu_user" {
+}
+
+variable "ubuntu_password" {
+}
+

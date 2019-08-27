@@ -3,18 +3,18 @@ variable "dc" {
 }
 
 data "vsphere_datacenter" "dc" {
-  name = "${var.dc}"
+  name = var.dc
 }
 
 data "vsphere_virtual_machine" "template" {
   name          = "Ubuntu"
-  datacenter_id = "${data.vsphere_datacenter.dc.id}"
+  datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 resource "vsphere_virtual_machine" "vm" {
   name             = "${var.project}-terraform-vm"
-  resource_pool_id = "${var.resource_pool_id}"
-  datastore_id     = "${var.datastore_id}"
+  resource_pool_id = var.resource_pool_id
+  datastore_id     = var.datastore_id
 
   num_cpus                    = 2
   memory                      = 1024
@@ -23,7 +23,7 @@ resource "vsphere_virtual_machine" "vm" {
   wait_for_guest_net_timeout  = 1
 
   network_interface {
-    network_id = "${var.network_id}"
+    network_id = var.network_id
   }
 
   disk {
@@ -32,11 +32,10 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   clone {
-    template_uuid = "${data.vsphere_virtual_machine.template.id}"
+    template_uuid = data.vsphere_virtual_machine.template.id
   }
 
-  tags = ["${var.tags}"]
-
+  tags = var.tags
   /*
   provisioner "local-exec" {
     command = "ping -c 10 ${vsphere_virtual_machine.vm.default_ip_address}"
@@ -57,5 +56,5 @@ resource "vsphere_virtual_machine" "vm" {
     }
   }
 */
-
 }
+
