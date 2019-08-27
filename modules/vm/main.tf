@@ -36,12 +36,12 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   #tags = var.tags
-  
+
   /*
   provisioner "local-exec" {
     command = "ping -c 10 ${vsphere_virtual_machine.vm.default_ip_address}"
   }
-
+*/
 
   provisioner "remote-exec" {
     inline = [
@@ -56,6 +56,6 @@ resource "vsphere_virtual_machine" "vm" {
       password = "${var.ubuntu_password}"
     }
   }
-*/
+
 }
 
