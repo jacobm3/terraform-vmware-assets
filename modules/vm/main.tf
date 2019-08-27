@@ -18,7 +18,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   num_cpus = 2
   memory   = 1024
-  guest_id = "other3xLinux64Guest"
+  guest_id = "ubuntu64Guest"
   wait_for_guest_net_routable = false
   wait_for_guest_net_timeout  = 0
 
