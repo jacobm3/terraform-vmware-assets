@@ -41,4 +41,6 @@ module "vm" {
   datastore_id     = "${data.vsphere_datastore.datastore.id}"
   resource_pool_id = "${data.vsphere_resource_pool.pool.id}"
   tags             = ["${module.tags.environment_dev}", "${module.tags.app_java}"]
+  ubuntu_user      = "${var.ubuntu_user}"
+  ubuntu_password  = "${var.ubuntu_password}"
 }
