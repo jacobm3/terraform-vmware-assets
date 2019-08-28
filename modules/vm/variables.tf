@@ -1,6 +1,6 @@
-variable "tags" {
-  #type = list(string)
-}
+# variable "tags" {
+#   #type = list(string)
+# }
 
 variable "network_id" {
 }
