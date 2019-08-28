@@ -43,12 +43,19 @@ resource "vsphere_virtual_machine" "vm" {
   }
   #tags = var.tags
 
+
   provisioner "remote-exec" {
     inline = [
       "echo ${var.ubuntu_password} | sudo -S sudo apt-get update",
-      "echo ${var.ubuntu_password} | sudo -S sudo apt-get install -y cowsay",
+      "echo ${var.ubuntu_password} | sudo -S sudo apt-get install -y cowsay nginx",
+      "echo ${var.ubuntu_password} | sudo -S sudo chown -R ${var.ubuntu_user} /var/www/html",
       "cowsay Moo!",
     ]
+  }
+
+  provisioner "file" {
+    source      = "index.html"
+    destination = "/var/www/html/index.html"
   }
 
 }
