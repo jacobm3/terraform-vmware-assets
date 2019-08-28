@@ -43,12 +43,14 @@ resource "vsphere_virtual_machine" "vm" {
   }
   #tags = var.tags
 
+  provisioner "file" {
+    source      = "modules/vm/files/setup.sh"
+    destination = "/home/${var.ubuntu_user}/setup.sh"
+  }
 
   provisioner "remote-exec" {
     inline = [
-      "echo ${var.ubuntu_password} | sudo -S sudo apt-get update",
-      "echo ${var.ubuntu_password} | sudo -S sudo apt-get install -y cowsay nginx",
-      "echo ${var.ubuntu_password} | sudo -S sudo chown -R ${var.ubuntu_user} /var/www/html",
+      "echo ${var.ubuntu_password} | sudo -S sudo /home/${var.ubuntu_user}/setup.sh",
       "cowsay Moo!",
     ]
   }
