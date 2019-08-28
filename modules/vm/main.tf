@@ -50,7 +50,7 @@ resource "vsphere_virtual_machine" "vm" {
 
   provisioner "remote-exec" {
     inline = [
-      "echo ${var.ubuntu_password} | sudo -S chmod 755 /home/${var.ubuntu_user}/setup.sh",
+      "chmod 755 /home/${var.ubuntu_user}/setup.sh",
       "echo ${var.ubuntu_password} | sudo -S sudo /home/${var.ubuntu_user}/setup.sh",
       "cowsay Moo!",
     ]
