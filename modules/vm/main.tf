@@ -35,6 +35,12 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = data.vsphere_virtual_machine.template.id
   }
 
+  connection {
+    type     = "ssh"
+    host     = self.default_ip_address
+    user     = "${var.ubuntu_user}"
+    password = "${var.ubuntu_password}"
+  }
   #tags = var.tags
 
   provisioner "remote-exec" {
@@ -43,13 +49,6 @@ resource "vsphere_virtual_machine" "vm" {
       "echo ${var.ubuntu_password} | sudo -S sudo apt-get install -y cowsay",
       "cowsay Moo!",
     ]
-
-    connection {
-      type     = "ssh"
-      host     = self.default_ip_address
-      user     = "${var.ubuntu_user}"
-      password = "${var.ubuntu_password}"
-    }
   }
 
 }

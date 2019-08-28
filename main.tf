@@ -3,12 +3,6 @@ provider "vsphere" {
   allow_unverified_ssl = true
 }
 
-/*
-terraform {
-  required_version = "= 0.11.14"
-}
-*/
-
 # Data sources
 data "vsphere_datacenter" "dc" {
   name = var.dc_name
