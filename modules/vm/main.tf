@@ -35,14 +35,15 @@ resource "vsphere_virtual_machine" "vm" {
     template_uuid = data.vsphere_virtual_machine.template.id
   }
 
+  #tags = var.tags
+
   connection {
     type     = "ssh"
     host     = self.default_ip_address
     user     = "${var.ubuntu_user}"
     password = "${var.ubuntu_password}"
   }
-  #tags = var.tags
-
+  
   provisioner "file" {
     source      = "modules/vm/files/setup.sh"
     destination = "/home/${var.ubuntu_user}/setup.sh"
