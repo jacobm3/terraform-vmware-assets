@@ -54,7 +54,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   provisioner "file" {
-    source      = "index.html"
+    source      = "files/index.html"
     destination = "/var/www/html/index.html"
   }
 
